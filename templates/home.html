@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-purple-700 to-indigo-800 text-white py-20">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col items-center text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                YOU DISCOVER, WE DELIVER
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl">
+                Transform your scientific research into a polished first draft. Let our AI-powered platform handle the writing while you focus on discovery.
+            </p>
+            <a href="{{ url_for('login') }}"
+                class="bg-white text-purple-700 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-purple-100 transition-colors flex items-center gap-2">
+                Start Now <i class="ri-arrow-right-line"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Why Choose MADLAB SCIENCE?</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- AI-Powered Writing Widget -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex flex-col items-center text-center">
+                    <i class="ri-brain-line text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mt-4 mb-2">AI-Powered Writing</h3>
+                    <p class="text-gray-600">Our advanced AI understands your research and crafts compelling scientific narratives.</p>
+                </div>
+            </div>
+
+            <!-- Structured Input Widget -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex flex-col items-center text-center">
+                    <i class="ri-file-text-line text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mt-4 mb-2">Structured Input</h3>
+                    <p class="text-gray-600">Clear, guided prompts ensure all critical research data is captured accurately.</p>
+                    <div class="mt-4 w-full">
+                        <div class="bg-gray-100 p-4 rounded-lg text-left">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span class="text-sm">Step-by-step guidance</span>
+                            </div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span class="text-sm">Research templates</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span class="text-sm">Data validation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scientific Focus Widget -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex flex-col items-center text-center">
+                    <i class="ri-microscope-line text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mt-4 mb-2">Scientific Focus</h3>
+                    <p class="text-gray-600">Specialized in academic writing across various scientific disciplines.</p>
+                    <div class="mt-4 w-full">
+                        <div class="bg-gray-100 p-4 rounded-lg text-left">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span class="text-sm">Peer-reviewed standards</span>
+                            </div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span class="text-sm">Scientific accuracy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="ri-checkbox-circle-line text-green-500"></i>
+                                <span class="text-sm">Domain-specific expertise</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+        <div class="space-y-6">
+            {% for faq in faqs %}
+            <div class="border-b border-gray-200 pb-6">
+                <button class="w-full text-left" onclick="toggleFAQ({{ loop.index }})">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-900">{{ faq.question }}</h3>
+                        <span class="ml-6 flex-shrink-0" id="icon-{{ loop.index }}">
+                            <i class="ri-add-line text-purple-600"></i>
+                        </span>
+                    </div>
+                </button>
+                <div class="mt-4 hidden" id="answer-{{ loop.index }}">
+                    <p class="text-gray-600">{{ faq.answer }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Add this after the FAQ section -->
+<div class="bg-gray-50 py-20">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-md p-8">
+            <h2 class="text-2xl font-bold text-center mb-8">Legal Disclaimer</h2>
+            <div class="prose max-w-none">
+                <div class="mb-6">
+                    <p class="text-gray-600 mb-4">MAD LAB, is dedicated to revolutionizing scientific communication by providing innovative writing assistance to researchers.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-purple-700 mb-2">Intellectual Property and Contributions</h3>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                <li>All intellectual insights and scientific contributions remain the sole property of the submitting authors</li>
+                                <li>MAD LAB's role is purely supportive and supplementary</li>
+                                <li>Our service does not diminish authors' intellectual contributions</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold text-purple-700 mb-2">Service Description</h3>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                <li>Provides augmentative writing assistance and analytical insights</li>
+                                <li>Tools designed to enhance the scientific writing process</li>
+                                <li>Offers additional perspectives while maintaining research integrity</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-purple-700 mb-2">Author Responsibilities</h3>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                <li>Authors retain full responsibility for verifying content accuracy</li>
+                                <li>Must review all generated content for potential inaccuracies</li>
+                                <li>Ensure all claims align with research findings</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-purple-700 mb-2">Quality Assurance</h3>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                <li>All output should be considered as supplementary material</li>
+                                <li>Authors should validate content against primary research data</li>
+                                <li>Final editorial decisions remain with the authors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-500 text-center">By engaging with MAD LAB's services, users acknowledge and accept these terms and responsibilities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function toggleFAQ(id) {
+    const answer = document.getElementById(`answer-${id}`);
+    const icon = document.getElementById(`icon-${id}`);
+    
+    answer.classList.toggle('hidden');
+    if (answer.classList.contains('hidden')) {
+        icon.innerHTML = '<i class="ri-add-line text-purple-600"></i>';
+    } else {
+        icon.innerHTML = '<i class="ri-subtract-line text-purple-600"></i>';
+    }
+}
+</script>
+{% endblock %}

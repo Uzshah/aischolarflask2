@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold mb-8 text-center">Submit Your Research</h2>
+    <form method="POST" action="{{ url_for('submit_research') }}" class="space-y-8">
+        <!-- Topic Area Section -->
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Topic Area</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Paper Title
+                    </label>
+                    <input type="text" name="title" required
+                        class="w-full p-2 border rounded-md"
+                        placeholder="e.g., Machine Learning for Early Detection of Cardiovascular Diseases">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Research Objective
+                    </label>
+                    <textarea name="objective" required
+                        class="w-full p-2 border rounded-md"
+                        rows="3"
+                        placeholder="Describe your research question or objective"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Keywords
+                    </label>
+                    <input type="text" name="keywords" required
+                        class="w-full p-2 border rounded-md"
+                        placeholder="Enter 3-5 keywords, separated by commas">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Hypothesis
+                    </label>
+                    <textarea name="hypothesis"
+                        class="w-full p-2 border rounded-md"
+                        rows="2"
+                        placeholder="State your research hypothesis"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Literature Review Section -->
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Literature Review</h3>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                    Insert 3 to 5 relevant studies to your work in a BibTeX format 
+                </label>
+                <textarea name="bibtex" required
+                    class="w-full p-2 border rounded-md font-mono text-sm"
+                    rows="6"
+                    placeholder="Paste your BibTeX entries here"></textarea>
+            </div>
+        </section>
+
+        <!-- Experiment Notes Section -->
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Experiment Notes</h3>
+            <div class="space-y-6">
+                <!-- Dataset Subsection -->
+                <div class="space-y-4">
+                    <h4 class="font-medium text-gray-700">Dataset</h4>
+                    <input type="text" name="datasetSource" required
+                        class="w-full p-2 border rounded-md"
+                        placeholder="Dataset source">
+                    <input type="text" name="datasetSize" required
+                        class="w-full p-2 border rounded-md"
+                        placeholder="Dataset size">
+                    <textarea name="keyVariables" required
+                        class="w-full p-2 border rounded-md"
+                        rows="2"
+                        placeholder="Key variables"></textarea>
+                    <textarea name="preprocessing" required
+                        class="w-full p-2 border rounded-md"
+                        rows="2"
+                        placeholder="Preprocessing steps"></textarea>
+                </div>
+
+                <!-- Method & Results Subsection -->
+                <div class="space-y-4">
+                    <h4 class="font-medium text-gray-700">Method & Results</h4>
+                    <input type="text" name="algorithm" required
+                        class="w-full p-2 border rounded-md"
+                        placeholder="Algorithm/Tool used">
+                    <textarea name="parameters" required
+                        class="w-full p-2 border rounded-md"
+                        rows="2"
+                        placeholder="Parameters"></textarea>
+                    <textarea name="results" required
+                        class="w-full p-2 border rounded-md"
+                        rows="3"
+                        placeholder="Key findings and quantitative results"></textarea>
+                    <textarea name="limitations"
+                        class="w-full p-2 border rounded-md"
+                        rows="2"
+                        placeholder="Limitations (optional)"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Submit Button -->
+        <div class="flex justify-center">
+            <button type="submit"
+                class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-purple-700 transition-colors flex items-center gap-2">
+                Submit Research <i class="ri-send-plane-line"></i>
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

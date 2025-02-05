@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MADLAB SCIENCE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <i class="ri-flask-line text-2xl text-purple-600"></i>
+                    <span class="font-bold text-xl text-gray-800">AI SCHOLAR</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="{{ url_for('home') }}" 
+                       class="px-3 py-2 rounded-md text-sm font-medium {% if request.endpoint == 'home' %}text-purple-600{% else %}text-gray-600{% endif %}">
+                        Home
+                    </a>
+                    <a href="{{ url_for('submit_research') }}" 
+                       class="px-3 py-2 rounded-md text-sm font-medium {% if request.endpoint == 'submit_research' %}text-purple-600{% else %}text-gray-600{% endif %}">
+                        Submit Research
+                    </a>
+                    {% if 'user' in session %}
+                        <span class="px-3 py-2 text-sm text-gray-600">{{ session['user'] }}</span>
+                        <a href="{{ url_for('logout') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600">Login</a>
+                        <a href="{{ url_for('signup') }}" class="px-3 py-2 rounded-md text-sm font-medium text-purple-600">Sign up</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
